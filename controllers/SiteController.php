@@ -2,11 +2,11 @@
 
 namespace app\controllers;
 
+use app\models\Users;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
 use app\models\ContactForm;
 
 class SiteController extends Controller
@@ -58,9 +58,10 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+        $model = new Users();
+        if ($model->load(Yii::$app->request->post()) && $model->login($model->username,$model->password)) {
+
+            return $this->redirect(['users/index']);
         }
         return $this->render('login', [
             'model' => $model,
