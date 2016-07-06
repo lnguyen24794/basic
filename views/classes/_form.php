@@ -22,7 +22,7 @@ use yii\widgets\ActiveForm;
 
     ?>
 
-    <?= $form->field($model, 'id_block')->dropDownList( $model->getlist_Block($model->id_school),['id', 'name'] )
+    <?= $form->field($model, 'id_block')->dropDownList( $model->getlist_Block('getFunction()'),['id', 'name'] )
 
     ?>
 
@@ -35,7 +35,6 @@ use yii\widgets\ActiveForm;
 </div>
 <script>
     function getFunction(){
-
-          = $("select").val();
+        return $("select").val());
     }
 </script>
